@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,14 +32,14 @@
             color: white;
             margin-bottom: 30px;
             font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .form-container {
             background: white;
             padding: 40px;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .form-container h2 {
@@ -59,7 +60,8 @@
             font-weight: 600;
         }
 
-        input, textarea {
+        input,
+        textarea {
             width: 100%;
             padding: 12px;
             border: 2px solid #e0e0e0;
@@ -68,7 +70,8 @@
             transition: border-color 0.3s;
         }
 
-        input:focus, textarea:focus {
+        input:focus,
+        textarea:focus {
             outline: none;
             border-color: #A23E2C;
         }
@@ -114,7 +117,7 @@
             background: white;
             padding: 40px;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             margin-top: 20px;
             max-height: 70vh;
             overflow-y: auto;
@@ -193,35 +196,38 @@
                 font-size: 2em;
             }
 
-            .form-container, .places-section {
+            .form-container,
+            .places-section {
                 padding: 25px;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>🌟 แบบฟอร์มแนะนำสถานที่ 🌟</h1>
-        
+
         <!-- ฟอร์มเพิ่มสถานที่ -->
         <div class="form-container" id="formSection">
             <h2>เพิ่มสถานที่ใหม่</h2>
-            <form id="placeForm">
+            <form id="placeForm" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="3f030346-1f3f-4146-ba39-30cfbe2f87ec">
                 <div class="form-group">
                     <label for="placeName">ชื่อสถานที่ *</label>
                     <input type="text" id="placeName" required placeholder="เช่น วัดพระแก้ว">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="placeDescription">รายละเอียด *</label>
                     <textarea id="placeDescription" required placeholder="บอกเล่าเกี่ยวกับสถานที่นี้..."></textarea>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="placeImage">URL ของภาพ *</label>
                     <input type="url" id="placeImage" required placeholder="https://example.com/image.jpg">
                 </div>
-                
+
                 <button type="submit">เพิ่มสถานที่</button>
                 <button type="button" class="view-places-btn" onclick="showPlaces()">ดูสถานที่ทั้งหมด</button>
             </form>
@@ -231,8 +237,9 @@
 
     <script>
         function showPlaces() {
-        window.location.href = "index.html"; 
-    }
+            window.location.href = "index.html";
+        }
     </script>
 </body>
+
 </html>
