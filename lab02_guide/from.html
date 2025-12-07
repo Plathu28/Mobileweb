@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบฟอร์มแนะนำสถานที่</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #A23E2C 0%, #D4674D 50%, #F4A261 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .form-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .form-container h2 {
+            color: #A23E2C;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 1.8em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #A23E2C;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #A23E2C 0%, #D4674D 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(162, 62, 44, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .view-places-btn {
+            margin-top: 15px;
+            background: linear-gradient(135deg, #f4df03 0%, #edea1e 100%);
+        }
+
+        .view-places-btn:hover {
+            box-shadow: 0 5px 15px rgba(44, 95, 45, 0.4);
+        }
+
+        .places-section {
+            display: none;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-top: 20px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .places-section.active {
+            display: block;
+        }
+
+        .places-section h2 {
+            color: #A23E2C;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 1.8em;
+        }
+
+        .place-card {
+            background: #fff5f2;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #A23E2C;
+            transition: transform 0.2s;
+        }
+
+        .place-card:hover {
+            transform: translateX(5px);
+        }
+
+        .place-card h3 {
+            color: #A23E2C;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+
+        .place-card p {
+            color: #555;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .place-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .place-card .delete-btn {
+            width: auto;
+            padding: 8px 16px;
+            background: #dc3545;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .place-card .delete-btn:hover {
+            background: #c82333;
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #999;
+            padding: 40px;
+            font-style: italic;
+        }
+
+        .back-btn {
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #555 0%, #777 100%);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .form-container, .places-section {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌟 แบบฟอร์มแนะนำสถานที่ 🌟</h1>
+        
+        <!-- ฟอร์มเพิ่มสถานที่ -->
+        <div class="form-container" id="formSection">
+            <h2>เพิ่มสถานที่ใหม่</h2>
+            <form id="placeForm">
+                <div class="form-group">
+                    <label for="placeName">ชื่อสถานที่ *</label>
+                    <input type="text" id="placeName" required placeholder="เช่น วัดพระแก้ว">
+                </div>
+                
+                <div class="form-group">
+                    <label for="placeDescription">รายละเอียด *</label>
+                    <textarea id="placeDescription" required placeholder="บอกเล่าเกี่ยวกับสถานที่นี้..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="placeImage">URL ของภาพ *</label>
+                    <input type="url" id="placeImage" required placeholder="https://example.com/image.jpg">
+                </div>
+                
+                <button type="submit">เพิ่มสถานที่</button>
+                <button type="button" class="view-places-btn" onclick="showPlaces()">ดูสถานที่ทั้งหมด</button>
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        function showPlaces() {
+        window.location.href = "index.html"; 
+    }
+    </script>
+</body>
+</html>
