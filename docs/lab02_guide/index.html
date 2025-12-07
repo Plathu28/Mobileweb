@@ -75,7 +75,13 @@
             margin: 0.3rem 0;
             font-size: 1.1rem;
         }
-
+        .student-info:hover {
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 16px rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
         main {
             max-width: 1400px;
             margin: -50px auto 2rem;
@@ -131,6 +137,9 @@
 
         .place-images:hover img {
             transform: scale(1.05);
+        }
+        .student-info{
+            padding: 2rem;
         }
 
         .place-content {
@@ -296,8 +305,12 @@
         <h1>🎓 KKU Campus Guide</h1>
         <p>คู่มือแนะนำสถานที่ท่องเที่ยวภายในมหาวิทยาลัยขอนแก่น</p>
         <div class="student-info">
-            <p>รหัสนักศึกษา: 663XXXXXXX</p>
-            <p>ชื่อ-สกุล: นายสมชาย ใจดี</p>
+            <p>รหัสนักศึกษา: 673380260-8</p>
+            <p>ชื่อ-สกุล: นายเมธัส ผดุงพงษ์</p>
+        </div>
+        <div class="student-info" onclick="showfrom()">
+            <p>แบบฟอร์มแนะนำสถานที่</p>
+            <p>ในหใาวิทยาลัยขอนแก่น</p>
         </div>
     </header>
 
@@ -383,10 +396,14 @@
 
     <footer>
         <p>&copy; 2025 KKU Campus Guide | มหาวิทยาลัยขอนแก่น</p>
-        <p>สร้างโดย: นายสมชาย ใจดี (663XXXXXXX)</p>
+        <p>สร้างโดย: นายเมธัส ผดุงพงษ์ (673380260-8)</p>
     </footer>
 
     <script>
+
+        function showfrom() {
+        window.location.href = "from.html"; 
+        }
         // Canvas Logo Animation
         const canvas = document.getElementById('logoCanvas');
         const ctx = canvas.getContext('2d');
