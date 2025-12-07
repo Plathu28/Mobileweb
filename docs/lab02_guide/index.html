@@ -20,8 +20,8 @@
         }
 
         header {
-            background: linear-gradient(#A23E2C);
-            padding: 3rem 1rem;
+            background: linear-gradient(135deg, #A23E2C 0%, #D4674D 100%);
+            padding: clamp(2rem, 5vw, 3rem) 1rem;
             text-align: center;
             color: white;
             position: relative;
@@ -32,6 +32,8 @@
             display: block;
             margin: 0 auto 1rem;
             filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+            max-width: 100%;
+            height: auto;
         }
 
         header::before {
@@ -47,44 +49,56 @@
         }
 
         header h1 {
-            font-size: 3rem;
+            font-size: clamp(1.8rem, 5vw, 3rem);
             margin-bottom: 0.5rem;
             position: relative;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         header p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             margin-bottom: 1.5rem;
             position: relative;
+            padding: 0 1rem;
+        }
+
+        .student-info-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            padding: 0 1rem;
         }
 
         .student-info {
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
+            padding: clamp(0.8rem, 3vw, 1.5rem) clamp(1.2rem, 4vw, 2rem);
             border-radius: 50px;
             display: inline-block;
             position: relative;
             border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
         }
 
         .student-info p {
             color: white;
             font-weight: 600;
-            margin: 0.3rem 0;
-            font-size: 1.1rem;
+            margin: 0.2rem 0;
+            font-size: clamp(0.85rem, 2vw, 1.1rem);
         }
+
         .student-info:hover {
             cursor: pointer;
             background: rgba(255, 255, 255, 0.3);
             box-shadow: 0 8px 16px rgba(255, 255, 255, 0.3);
             transform: translateY(-2px);
-            transition: all 0.3s ease;
         }
+
         main {
             max-width: 1400px;
-            margin: -50px auto 2rem;
+            margin: clamp(-30px, -5vw, -50px) auto 2rem;
             padding: 0 1rem;
             position: relative;
         }
@@ -92,8 +106,8 @@
         .places-container {
             display: flex;
             flex-direction: column;
-            gap: 3rem;
-            margin-top: 90px;
+            gap: clamp(2rem, 4vw, 3rem);
+            margin-top: clamp(40px, 10vw, 90px);
         }
 
         article.place-card {
@@ -116,7 +130,7 @@
             direction: rtl;
         }
 
-        article.place-card:nth-child(even)>* {
+        article.place-card:nth-child(even) > * {
             direction: ltr;
         }
 
@@ -138,12 +152,9 @@
         .place-images:hover img {
             transform: scale(1.05);
         }
-        .student-info{
-            padding: 2rem;
-        }
 
         .place-content {
-            padding: 2.5rem;
+            padding: clamp(1.5rem, 4vw, 2.5rem);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -152,48 +163,49 @@
 
         .place-content h2 {
             color: #A23E2C;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
+            font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            flex-wrap: wrap;
         }
 
         .place-number {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(#A23E2C);
+            width: clamp(32px, 6vw, 40px);
+            height: clamp(32px, 6vw, 40px);
+            background: linear-gradient(135deg, #A23E2C 0%, #D4674D 100%);
             color: white;
             border-radius: 50%;
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: bold;
-            margin-right: 0.5rem;
+            flex-shrink: 0;
         }
 
         .place-content p {
             color: #555;
-            line-height: 1.9;
+            line-height: 1.8;
             text-align: justify;
-            font-size: 1.05rem;
+            font-size: clamp(0.95rem, 2.2vw, 1.05rem);
         }
 
         footer {
-            background: linear-gradient(#A23E2C);
+            background: linear-gradient(135deg, #A23E2C 0%, #D4674D 100%);
             text-align: center;
-            padding: 2.5rem;
-            margin-top: 4rem;
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            margin-top: clamp(2rem, 5vw, 4rem);
             color: white;
         }
 
         footer p {
             margin: 0.5rem 0;
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 2.2vw, 1.1rem);
         }
 
-        /* Media Queries for Responsive Design */
+        /* Tablet and below */
         @media (max-width: 1024px) {
             article.place-card {
                 grid-template-columns: 1fr;
@@ -205,73 +217,72 @@
 
             .place-images {
                 flex-direction: row;
+                height: 200px;
             }
 
             .place-images img {
-                height: 200px;
+                height: 100%;
+                width: 50%;
             }
         }
 
+        /* Mobile */
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
+            header {
+                padding: 2rem 1rem;
             }
 
-            header p {
-                font-size: 1rem;
+            .student-info-container {
+                flex-direction: column;
+                gap: 0.8rem;
             }
 
             .student-info {
-                padding: 0.8rem 1.5rem;
-            }
-
-            .student-info p {
-                font-size: 0.95rem;
+                width: 100%;
+                max-width: 400px;
+                text-align: center;
             }
 
             main {
-                margin-top: -30px;
+                margin-top: -20px;
             }
 
             .places-container {
-                gap: 2rem;
-            }
-
-            .place-content {
-                padding: 1.5rem;
-            }
-
-            .place-content h2 {
-                font-size: 1.4rem;
-            }
-
-            .place-number {
-                width: 35px;
-                height: 35px;
-                font-size: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header {
-                padding: 2rem 0.5rem;
-            }
-
-            header h1 {
-                font-size: 1.5rem;
-            }
-
-            .student-info {
-                font-size: 0.85rem;
-                padding: 0.6rem 1rem;
+                margin-top: 30px;
             }
 
             .place-images {
                 flex-direction: column;
+                height: auto;
             }
 
             .place-images img {
                 height: 180px;
+                width: 100%;
+            }
+
+            .place-content h2 {
+                align-items: flex-start;
+            }
+        }
+
+        /* Small mobile */
+        @media (max-width: 480px) {
+            header {
+                padding: 1.5rem 0.5rem;
+            }
+
+            #logoCanvas {
+                width: 150px;
+                height: 150px;
+            }
+
+            .student-info {
+                padding: 0.8rem 1.2rem;
+            }
+
+            .place-images img {
+                height: 150px;
             }
 
             .place-content {
@@ -279,21 +290,22 @@
             }
 
             .place-content h2 {
-                font-size: 1.2rem;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .place-content p {
-                font-size: 0.95rem;
+                margin-bottom: 0.8rem;
             }
 
             footer {
-                padding: 1.5rem;
+                padding: 1.5rem 1rem;
+            }
+        }
+
+        /* Extra small screens */
+        @media (max-width: 360px) {
+            .place-images img {
+                height: 130px;
             }
 
-            footer p {
-                font-size: 0.9rem;
+            .place-content {
+                padding: 1rem;
             }
         }
     </style>
@@ -304,13 +316,15 @@
         <canvas id="logoCanvas" width="200" height="200"></canvas>
         <h1>🎓 KKU Campus Guide</h1>
         <p>คู่มือแนะนำสถานที่ท่องเที่ยวภายในมหาวิทยาลัยขอนแก่น</p>
-        <div class="student-info">
-            <p>รหัสนักศึกษา: 673380260-8</p>
-            <p>ชื่อ-สกุล: นายเมธัส ผดุงพงษ์</p>
-        </div>
-        <div class="student-info" onclick="showfrom()">
-            <p>แบบฟอร์มแนะนำสถานที่</p>
-            <p>ในหใาวิทยาลัยขอนแก่น</p>
+        <div class="student-info-container">
+            <div class="student-info">
+                <p>รหัสนักศึกษา: 673380260-8</p>
+                <p>ชื่อ-สกุล: นายเมธัส ผดุงพงษ์</p>
+            </div>
+            <div class="student-info" onclick="showfrom()">
+                <p>แบบฟอร์มแนะนำสถานที่</p>
+                <p>ในมหาวิทยาลัยขอนแก่น</p>
+            </div>
         </div>
     </header>
 
@@ -318,10 +332,8 @@
         <div class="places-container">
             <article class="place-card">
                 <div class="place-images">
-                    <img src="images/libary5.png"
-                        alt="ห้องสมุด มข. ด้านหน้า">
-                    <img src="images/libary4.jpg"
-                        alt="ห้องสมุด มข. ด้านใน">
+                    <img src="images/libary5.png" alt="ห้องสมุด มข. ด้านหน้า">
+                    <img src="images/libary4.jpg" alt="ห้องสมุด มข. ด้านใน">
                 </div>
                 <div class="place-content">
                     <h2>
@@ -337,10 +349,8 @@
 
             <article class="place-card">
                 <div class="place-images">
-                    <img src="images/lake1.webp"
-                        alt="บึงสีฐาน มข.">
-                    <img src="images/leak2.jpg"
-                        alt="บึงสีฐาน จุดชมวิว">
+                    <img src="images/lake1.webp" alt="บึงสีฐาน มข.">
+                    <img src="images/leak2.jpg" alt="บึงสีฐาน จุดชมวิว">
                 </div>
                 <div class="place-content">
                     <h2>
@@ -356,10 +366,8 @@
 
             <article class="place-card">
                 <div class="place-images">
-                    <img src="images/stadium1.jpg"
-                        alt="สนามกีฬา 50 ปี มข.">
-                    <img src="images/stadium3.jpg"
-                        alt="สนามกีฬา มข. ลู่วิ่ง">
+                    <img src="images/stadium1.jpg" alt="สนามกีฬา 50 ปี มข.">
+                    <img src="images/stadium3.jpg" alt="สนามกีฬา มข. ลู่วิ่ง">
                 </div>
                 <div class="place-content">
                     <h2>
@@ -375,8 +383,7 @@
 
             <article class="place-card">
                 <div class="place-images">
-                    <img src="images/Museum1.jpg"
-                        alt="พิพิธภัณฑ์ มข.">
+                    <img src="images/Museum1.jpg" alt="พิพิธภัณฑ์ มข.">
                     <img src="images/museum2.jpeg" alt="พิพิธภัณฑ์ มข. นิทรรศการ">
                 </div>
                 <div class="place-content">
@@ -390,7 +397,6 @@
                     </p>
                 </div>
             </article>
-
         </div>
     </main>
 
@@ -400,10 +406,10 @@
     </footer>
 
     <script>
-
         function showfrom() {
-        window.location.href = "form.html"; 
+            window.location.href = "form.html";
         }
+
         // Canvas Logo Animation
         const canvas = document.getElementById('logoCanvas');
         const ctx = canvas.getContext('2d');
@@ -422,7 +428,6 @@
         }
 
         function drawLogo() {
-            // Clear canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             const centerX = canvas.width / 2;
@@ -445,13 +450,10 @@
             ctx.translate(centerX, centerY);
             ctx.rotate(angle);
 
-            // Outer ring with gradient
             const gradient = ctx.createLinearGradient(-50, -50, 50, 50);
             gradient.addColorStop(0, '#E3895F');
             gradient.addColorStop(0.5, '#D46A4E');
             gradient.addColorStop(1, '#7A2519');
-
-
 
             ctx.strokeStyle = gradient;
             ctx.lineWidth = 6;
@@ -461,9 +463,8 @@
 
             ctx.restore();
 
-            // Draw main circle (building symbol)
+            // Draw main circle
             ctx.fillStyle = '#FFF3D6';
-
             ctx.beginPath();
             ctx.arc(centerX, centerY, 45, 0, Math.PI * 2);
             ctx.fill();
@@ -480,7 +481,6 @@
             ctx.lineWidth = 3;
             ctx.lineCap = 'round';
 
-            // Building pillars
             const pillarY = centerY + 20;
             [-15, 0, 15].forEach(x => {
                 ctx.beginPath();
@@ -489,7 +489,6 @@
                 ctx.stroke();
             });
 
-            // Building top
             ctx.beginPath();
             ctx.moveTo(centerX - 20, pillarY);
             ctx.lineTo(centerX + 20, pillarY);
