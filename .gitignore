@@ -1,0 +1,18 @@
+# เติม **/ นำหน้า เพื่อให้ทะลุเข้าไปหาทุกโฟลเดอร์ย่อย
+**/node_modules/
+**/dist/
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+
+# Android Files
+**/android/app/build/
+**/android/.gradle/
+**/android/local.properties
+**/.gradle/
+**/build/
+!**/android/app/build.gradle
+
+# System files
+.DS_Store
+Thumbs.db
