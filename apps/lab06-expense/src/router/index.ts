@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from '@ionic/vue-router';
+import { createRouter, createWebHashHistory } from '@ionic/vue-router'; // <--- 1. แก้ตรงนี้
 import { RouteRecordRaw } from 'vue-router';
 import TabsPage from '../views/TabsPage.vue';
 import AddExpensePage from '../views/AddExpensePage.vue'; 
@@ -18,12 +18,10 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: 'tab1',
-        // แบบ Lazy Load (โหลดเมื่อใช้)
         component: () => import('@/views/Tab1Page.vue') 
       },
       {
         path: 'tab2',
-        // แบบ Import มาตรงๆ (AddExpensePage)
         component: AddExpensePage 
       },
       {
@@ -39,7 +37,8 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  // 👇 2. แก้ตรงนี้ให้เป็น HashHistory (วงเล็บว่างๆ ได้เลย)
+  history: createWebHashHistory(),
   routes
 })
 
