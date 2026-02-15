@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "121972935627",
+    "project_id": "lab06-expense-134f0",
+    "storage_bucket": "lab06-expense-134f0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:121972935627:android:0647feb4ec420cbb2dc44e",
+        "android_client_info": {
+          "package_name": "cpkku.metus.lab07"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "121972935627-os8k4svkqioh57dlg8io6mcia5khk7j8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cpkku.metus.lab07",
+            "certificate_hash": "5c43911876bc1fb2bbf74c19772d5e14733a38c6"
+          }
+        },
+        {
+          "client_id": "121972935627-99rs1pulve25h5m0va8jqhd96d82av8p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgZvtECP-Ll66zcQXIyfz9EFmQGBNpgjk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "121972935627-99rs1pulve25h5m0va8jqhd96d82av8p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
