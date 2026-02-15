@@ -1,7 +1,7 @@
-import { createRouter, createWebHistory } from '@ionic/vue-router';
+import { createRouter, createWebHashHistory } from '@ionic/vue-router'; // ✅ 1. เปลี่ยนเป็น HashHistory
 import { RouteRecordRaw } from 'vue-router';
 import TabsPage from '../views/TabsPage.vue';
-import { authService } from '@/auth/auth-service'; // Import Service ที่เราทำไว้
+import { authService } from '@/auth/auth-service'; // เช็ค Path นี้ให้ถูกนะครับ
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -11,12 +11,12 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('@/views/LoginPage.vue') // เดี๋ยวเราจะสร้างไฟล์นี้
+    component: () => import('@/views/LoginPage.vue')
   },
   {
     path: '/tabs/',
     component: TabsPage,
-    meta: { requiresAuth: true }, // ✅ เพิ่มบรรทัดนี้ เพื่อบอกว่าต้อง Login ก่อน
+    meta: { requiresAuth: true }, // ✅ ใส่ตรงนี้ ลูกๆ ทุก Tab จะโดนบังคับ Login หมด
     children: [
       {
         path: '',
@@ -39,28 +39,38 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  // ✅ 2. ใช้ HashHistory เพื่อให้ URL มี # (แก้จอขาวบนมือถือ)
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes
 })
 
-// ✅ เพิ่ม Auth Guard ด้านล่างสุดก่อน export
+// ✅ Auth Guard: กันคนไม่ Login เข้าใช้งาน
 router.beforeEach(async (to, from, next) => {
-  const user = await authService.getCurrentUser();
-  
-  // 1. ถ้า Login แล้ว แต่อยากเข้าหน้า Login -> ดีดไป Tab1
-  if (to.path === "/login" && user) {
-    next("/tabs/tab1");
-    return;
-  }
+  try {
+    const user = await authService.getCurrentUser();
+    
+    // เช็คว่าหน้านี้ต้องการ Login ไหม? (ดูจาก meta: requiresAuth)
+    const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
-  // 2. ถ้าหน้านั้นต้องการ Auth (requiresAuth) แต่ยังไม่ Login -> ดีดไป Login
-  if (to.matched.some(record => record.meta.requiresAuth) && !user) {
-    next("/login");
-    return;
-  }
+    // กรณีที่ 1: ถ้าจะไปหน้า Login แต่มี User แล้ว -> ดีดไป Tab1 เลย (ไม่ต้อง Login ซ้ำ)
+    if (to.path === '/login' && user) {
+      next('/tabs/tab1');
+      return;
+    }
 
-  // 3. กรณีอื่น ให้ผ่านไปได้
-  next();
+    // กรณีที่ 2: ถ้าจะไปหน้าลับ (Tabs) แต่ไม่มี User -> ดีดไป Login
+    if (requiresAuth && !user) {
+      next('/login');
+      return;
+    }
+
+    // กรณีที่ 3: ผ่านได้ปกติ
+    next();
+    
+  } catch (error) {
+    console.error("Auth Guard Error:", error);
+    next('/login'); // ถ้า Error อะไรแปลกๆ ให้ดีดไป Login ไว้ก่อนเพื่อความปลอดภัย
+  }
 });
 
 export default router
