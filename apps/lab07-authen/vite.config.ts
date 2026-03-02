@@ -22,6 +22,7 @@ export default defineConfig({
     environment: 'jsdom'
   },
   build: {
-    outDir: 'docs', // เพื่อให้ build ลงโฟลเดอร์ docs โดยตรง
+    outDir: '../../docs/lab07',
+    emptyOutDir: true, // ล้างไฟล์เก่าใน lab07 ก่อน build ใหม่ // เพื่อให้ build ลงโฟลเดอร์ docs โดยตรง
   }
 })
