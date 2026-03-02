@@ -34,10 +34,12 @@ import '@ionic/vue/css/palettes/dark.system.css';
 /* Theme variables */
 import './theme/variables.css';
 
+// src/main.ts
 const app = createApp(App)
   .use(IonicVue)
   .use(router);
 
+// สำคัญมากสำหรับ Ionic: ต้องรอให้ Router พร้อมก่อนค่อย Mount
 router.isReady().then(() => {
   app.mount('#app');
 });
