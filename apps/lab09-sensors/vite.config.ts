@@ -7,7 +7,6 @@ import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: './', 
   plugins: [
     vue(),
     legacy()
@@ -20,8 +19,5 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom'
-  },
-  build: {
-    outDir: 'docs', // เพื่อให้ build ลงโฟลเดอร์ docs โดยตรง
   }
 })
